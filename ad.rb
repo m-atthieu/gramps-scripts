@@ -316,12 +316,13 @@ if ARGV[0] =~ /\.gramps$/ then
     # ajout objref dans citation
       citation.add_child objref
     rescue => e
-      puts e.inspect
+      puts "[EXCEPTION] #{e.inspect}"
     end
     
   end
-  puts "[INFO] writing DESILE-test.gramps"
-  open('DESILE-test.gramps', 'w') do |f|
+  basename = File.basename(ARGV[0], '*.gramps')
+  puts "[INFO] writing #{basename}-test.gramps"
+  open("#{basename}-test.gramps", 'w') do |f|
     f.write g.to_xml
   end
 else
